@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const WorkoutSchema = new Schema({
     day: {
-        type: String,
+        type: Date,
         trim: true,
-        required: "String is Required"
+        default : () => new Date()
     },
 
     exercises: [{
@@ -18,39 +18,35 @@ const WorkoutSchema = new Schema({
         name: {
             type: String,
             trim: true,
-            required: "String is Required"
+            required: "Number is Required"
         },
         duration: {
-            type: String,
+            type: Number,
             trim: true,
-            required: "String is Required"
+            required: "Number is Required"
         },
         weight: {
-            type: String,
+            type: Number,
             trim: true,
-            required: "String is Required"
+            required: "Number is Required"
         },
         reps: {
-            type: String,
+            type: Number,
             trim: true,
-            required: "String is Required"
+            required: "Number is Required"
         },
         sets: {
-            type: String,
+            type: Number,
             trim: true,
-            required: "String is Required"
+            required: "Number is Required"
         },
         distance: {
-            type: String,
+            type: Number,
             trim: true,
-            required: "String is Required"
+            required: "Number is Required"
         }
     }]
 });
-
-// Workout.createCollection().then(function(collection) {
-//     console.log(collection);
-//   });
 
 const Workout = mongoose.model("Workout", WorkoutSchema);
 
