@@ -48,6 +48,10 @@ const WorkoutSchema = new Schema({
     }]
 });
 
-const User = mongoose.model("User", WorkoutSchema);
+// Workout.createCollection().then(function(collection) {
+//     console.log(collection);
+//   });
 
-module.exports = User;
+const Workout = mongoose.model("Workout", WorkoutSchema);
+
+module.exports = Workout;
