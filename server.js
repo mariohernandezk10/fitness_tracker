@@ -43,13 +43,13 @@ app.get("/api/workouts", function (req, res) {
 });
 
 
-// app.put("/api/workouts/:id", function (req, res) {
-//   db.Workout.findByIdAndUpdate(req.params.id, {
-//     exercises: req.body
-//   }).then(function (data) {
-//     res.json(data);
-//   })
-// });
+app.put("/api/workouts/:id", function (req, res) {
+  db.Workout.findByIdAndUpdate(req.params.id, {
+    exercises: req.body
+  }).then(function (data) {
+    res.json(data);
+  })
+});
 
 app.post("/api/workouts", function (req, res) {
   console.log(req.body)
