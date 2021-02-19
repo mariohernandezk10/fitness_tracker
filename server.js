@@ -20,10 +20,23 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
   useFindAndModify: false
 });
 
+app.use(require("./routes/api-routes"));
 // this code below should give us an error
 // db.on("error", error => {
 //     console.log("Database Error:", error);
 // });
+
+app.get("/", function (req, res) {
+  res.sendFile(path.join(__dirname, "./public/index.html"))
+})
+
+app.get("/stats", function (req, res) {
+  res.sendFile(path.join(__dirname, "./public/stats.html"))
+})
+
+app.get("/exercise", function (req, res) {
+  res.sendFile(path.join(__dirname, "./public/exercise.html"))
+})
 
 
 // let body = {
@@ -36,28 +49,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
 // To find a specific workout in the array
 // use db.Workout.find({"exercises": {$in: ["Bench Press"]}})
 
-app.get("/api/workouts", function (req, res) {
-  db.Workout.find({}).then(function (data) {
-    res.json(data)
-  })
-});
 
-
-app.put("/api/workouts/:id", function (req, res) {
-  db.Workout.findByIdAndUpdate(req.params.id, {
-    exercises: req.body
-  }).then(function (data) {
-    res.json(data);
-  })
-});
-
-app.post("/api/workouts", function (req, res) {
-  console.log(req.body)
-  let body = req.body
-  db.Workout.create({body}).then(function (data) {
-    res.json(data);
-  })
-})
 
 // app.post("/api/workouts", ({ body }, res) => {
 //   db.Workout.create(body)
@@ -66,12 +58,6 @@ app.post("/api/workouts", function (req, res) {
 //       res.json(data);
 //     })
 // });
-
-app.get("/api/workouts/range", function (req, res) {
-  db.Workout.find({}).then(function (data) {
-    res.json(data);
-  })
-})
 
 // req.query.id ---> 2394572394283
 // app.post("/api/workouts", function (req, res) {
@@ -91,17 +77,7 @@ app.get("/api/workouts/range", function (req, res) {
 // routes
 // app.use(require("./routes/api.js"));
 
-app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "./public/index.html"))
-})
 
-app.get("/stats", function (req, res) {
-  res.sendFile(path.join(__dirname, "./public/stats.html"))
-})
-
-app.get("/exercise", function (req, res) {
-  res.sendFile(path.join(__dirname, "./public/exercise.html"))
-})
 
 
 app.listen(PORT, () => {
