@@ -2,7 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const path = require("path")
-const db = require("./models")
+const db = require("./models");
+
 
 const PORT = process.env.PORT || 3000;
 
@@ -43,6 +44,18 @@ app.get("/exercise", function (req, res) {
 //   name: "sai",
 //   birthday: 111185
 // }
+
+app.get("/api/workouts", function (req, res) {
+  db.Workout.aggregate([{
+      $addFields: {
+        totalDuration: {
+          $sum: "duration"
+        }
+      }
+    }])
+    console.log(totalDuration);
+})
+
 // db.Chicken.create(body).catch(err => console.log(err));
 
 
@@ -72,12 +85,6 @@ app.get("/exercise", function (req, res) {
 // });
 // **** db.places.update({"_id": ObjectId("602b26080e5d651914577aa1")}, {$push: {"majorcities": "Austin"}}) ******
 // db.[COLLECTION_NAME].update()
-
-
-// routes
-// app.use(require("./routes/api.js"));
-
-
 
 
 app.listen(PORT, () => {

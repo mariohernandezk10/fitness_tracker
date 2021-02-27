@@ -9,6 +9,16 @@ router.get("/api/workouts", function (req, res) {
     })
 });
 
+// router.get("/api/workouts", function (req, res) {
+//     db.Workout.aggregate([{
+//         $addFields: {
+//           totalDuration: {
+//             $sum: "duration"
+//           }
+//         }
+//       }])
+// })
+
 
 router.put("/api/workouts/:id", function (req, res) {
     db.Workout.findByIdAndUpdate(req.params.id, {
