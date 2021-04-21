@@ -5,6 +5,7 @@ Mario Hernandez
 
 * User Story
 * Technologies
+* Installation
 * Screenshot
 * Usage
 * License
@@ -19,6 +20,12 @@ Deploy Here:
 # Technologies:
 
 HTML, CSS, JS, express, mongoosedb
+
+# Installation
+
+npm i
+
+node server
 
 ## Screenshot
 
