@@ -23,9 +23,13 @@ HTML, CSS, JS, express, mongoosedb
 
 # Installation
 
+To install necessary dependencies, run the following command:
+​
+```
 npm i
 
 node server
+```
 
 ## Screenshot
 
